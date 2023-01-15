@@ -1,0 +1,17 @@
+.btn {
+    display: inline-block;
+    padding: 15px 60px;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    text-decoration: none;
+}
+
+.btn span {
+    display: block;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}

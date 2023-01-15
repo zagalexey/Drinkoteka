@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import "./styles/App.css";
+import Button from "./components/Button";
+import axios from "axios";
+import { useState } from "react";
+import { ITodo } from "./models";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState<ITodo | null>(null);
+
+  const fetchData = (): void => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos/1")
+      .then((res) => setTodos(res.data))
+      .catch((e) => console.log(e));
+  };
+
+  const deleteData = (): void => {
+    setTodos(null);
+  };
+
+  const btn1 = {
+    name: "Kozel",
+    price: 20,
+  };
+  const btn2 = {
+    name: "Plzen",
+    price: 30,
+  };
 
   return (
-    <div className="App">
+    <div className={"container"}>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Button data={btn1} onClick={fetchData} />
+        <Button data={btn2} onClick={fetchData} />
+        <Button text={"Delete data"} onClick={deleteData} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button id={'click-btn'} onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div>
+        {todos && (
+          <ul>
+            <li>
+              <h3>{todos.title}</h3>
+              <span>{todos.completed}</span>
+            </li>
+          </ul>
+        )}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
