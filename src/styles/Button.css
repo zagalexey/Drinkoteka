@@ -1,15 +1,13 @@
 .btn {
-    display: inline-block;
-    padding: 15px 60px;
-    background-color: black;
-    color: white;
-    border-radius: 30px;
-    border: none;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid black;
     text-decoration: none;
+    backdrop-filter: blur(10px);
 }
 
 .btn span {
-    display: block;
+    font-family: 'Andika', sans-serif;
 }
 
 .btn:hover {
