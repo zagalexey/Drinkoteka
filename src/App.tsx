@@ -42,7 +42,7 @@ const App = () => {
 
   const postPayment = () => {
     axios
-      .post("http://192.168.1.100:33350/paya/payment", payment)
+      .post("http://192.168.1.112:33350/paya/payment", payment)
       .then((res: AxiosResponse<IPaymentResponse>) => {
         checkForPaymentStatus();
       })
@@ -56,7 +56,7 @@ const App = () => {
     };
 
     axios
-      .post("http://192.168.1.100:33350/paya/cancel", cancelBody)
+      .post("http://192.168.1.112:33350/paya/cancel", cancelBody)
       .then((res) => {
         setPayment(null);
       })
@@ -71,7 +71,7 @@ const App = () => {
     };
 
     axios
-      .post("http://192.168.1.100:33350/paya/confirm", confirmBody)
+      .post("http://192.168.1.112:33350/paya/confirm", confirmBody)
       .then((res) => console.log(res.data))
       .catch((e) => console.log(e));
 
@@ -86,7 +86,7 @@ const App = () => {
 
     const interval = setInterval(() => {
       axios
-        .post("http://192.168.1.100:33350/paya/status", body)
+        .post("http://192.168.1.112:33350/paya/status", body)
         .then((res) => {
           if (res.data.status === Status.FINISHED) {
             console.log(res.data);
@@ -112,7 +112,7 @@ const App = () => {
       secureString: `${payment?.secureString}`,
     };
     axios
-      .post("http://192.168.1.100:33350/paya/result", resultBody)
+      .post("http://192.168.1.112:33350/paya/result", resultBody)
       .then((res) => console.log("Result: ", res.data))
       .catch((e) => console.log(e));
   };
