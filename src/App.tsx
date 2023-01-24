@@ -73,7 +73,7 @@ const App = () => {
     axios
       .post("http://192.168.1.112:33350/paya/confirm", confirmBody)
       .then((res) => console.log(res.data))
-      .catch((e) => console.log(e));
+      .catch((e) => console.log("Error", e));
 
     paymentResult();
   };
